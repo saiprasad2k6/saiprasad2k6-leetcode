@@ -11,12 +11,10 @@ class Solution {
                 continue;
             }
 
-            if (hashMap.size() < windowSize) {
-                while (hashMap.size() < (j - i + 1)) {
-                    hashMap.put(s.charAt(i), hashMap.get(s.charAt(i)) - 1);
-                    if (hashMap.get(s.charAt(i)) == 0) hashMap.remove(s.charAt(i));
-                    i++;
-                }
+            while (hashMap.size() < (j - i + 1)) {
+                hashMap.put(s.charAt(i), hashMap.get(s.charAt(i)) - 1);
+                if (hashMap.get(s.charAt(i)) == 0) hashMap.remove(s.charAt(i));
+                i++;
             }
         }
         return max;
