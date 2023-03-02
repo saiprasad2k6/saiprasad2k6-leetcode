@@ -1,30 +1,33 @@
 class Solution {
     public int compress(char[] chars) {
         int n = chars.length;
+
+        //Base Case - When there is only one char, we can compress in one way
         if (n == 1) {
             return 1;
         }
-        int i = 0, j = 0;
 
-        while (i < n) {
+        //j is the fast pointer, index is the actual slow pointer to be returned.
+        int j = 0, index = 0;
+
+        while (j < n) {
             int count = 1;
             //Navigate until the characters are same
-            while (i < (n - 1) && (chars[i] == chars[i + 1])) {
+            while (j < (n - 1) && (chars[j] == chars[j + 1])) {
                 count++;
-                i++;
+                j++;
             }
-            //Jump to the next character
-            chars[j++] = chars[i++];
-            
-            //Add the Count
+            //Jump to the next character as the chars are not equal
+            chars[index++] = chars[j++];
+
+            //Add the Count to the input
             if (count > 1) {
                 String countStr = String.valueOf(count);
                 for (char c : countStr.toCharArray())
-                    chars[j++] = c;
+                    chars[index++] = c;
             }
-            
-        }
-        return j;
 
+        }
+        return index;
     }
 }
